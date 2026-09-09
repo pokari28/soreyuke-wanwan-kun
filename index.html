@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>それゆけワンワン君｜外旭川わんわん保育園</title>
+<style>
+:root{--pink:#ff6699;--pink-light:#ff99cc;--cream:#fff0f5}
+*{box-sizing:border-box}
+body{font-family:"Hiragino Sans","Yu Gothic",Meiryo,sans-serif;background:linear-gradient(180deg,#d6efff,#ffeaf4);display:flex;justify-content:center;align-items:center;min-height:100vh;margin:0;user-select:none;touch-action:manipulation}
+.game{background:#fff;width:min(480px,100vw);height:min(640px,100vh);border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.12);overflow:hidden;border:4px solid var(--pink-light);display:flex;position:relative}
+#mute,#progress{position:absolute;top:10px;height:40px;background:rgba(255,255,255,.9);border:2px solid var(--pink-light);z-index:200;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 5px rgba(0,0,0,.1)}
+#mute{right:10px;width:40px;border-radius:50%;cursor:pointer;font-size:18px}
+#progress{left:10px;display:none;padding:0 10px;border-radius:20px;font-size:12px;font-weight:bold;color:#c2185b}
+#title{position:absolute;inset:0;z-index:100;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;text-align:center;background:#eaf6ff center 30%/cover no-repeat}
+.title{font-size:28px;font-weight:bold;color:var(--pink);margin:0 0 4px;text-shadow:2px 2px 0 #fff;line-height:1.3}
+.sub{font-size:12px;color:#5a7a96;margin-bottom:12px}
+.btns{display:flex;flex-direction:column;gap:10px;width:84%}
+.start{color:#fff;border:none;padding:14px 12px;border-radius:30px;font-size:16px;font-weight:bold;cursor:pointer;width:100%}
+.bgn{background:#43e97b;border:2px solid #38f9d7}
+.pro{background:var(--pink);border:2px solid var(--pink-light)}
+.hs{margin:8px 0 16px;font-size:13px;color:#555}
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.side{width:58px;background:var(--cream);border-left:2px solid var(--pink-light);display:flex;flex-direction:column;align-items:center;padding:10px 0}
+.label{font-size:12px;font-weight:bold;color:var(--pink);writing-mode:vertical-rl;letter-spacing:3px;margin-bottom:10px}
+.gauge{width:20px;flex:1;background:#fff;border:2px solid var(--pink-light);border-radius:10px;overflow:hidden;display:flex;flex-direction:column-reverse}
+.fill{width:100%;height:0;background:linear-gradient(0deg,#4facfe,#00f2fe);transition:height .5s}
+.num{margin-top:10px;font-weight:bold;font-size:14px}
+.char{background:#ffebf5;height:54%;display:flex;justify-content:center;align-items:flex-end;position:relative;overflow:hidden}
+.char img{width:100%;height:108%;object-fit:contain;object-position:center bottom;margin-bottom:-8%}
+.bubble{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);background:rgba(255,255,255,.9);border-radius:10px;padding:10px 14px;width:92%;min-height:72px;max-height:46%;overflow:auto;border:2px solid #333;font-weight:800;font-size:15px;line-height:1.45;white-space:pre-wrap}
+.bubble.hide{display:none}
+.quiz{flex:1;padding:12px 14px 16px;overflow:auto;display:flex;flex-direction:column;justify-content:center}
+.grid{display:grid;gap:8px}
+button.choice,.quiz>button{background:#4da6ff;color:#fff;border:none;padding:12px 10px;border-radius:8px;font-size:14px;font-weight:bold;cursor:pointer}
+button.choice:disabled{background:#ccc;color:#666}
+.jump{animation:j .5s}
+.shake{animation:s .5s}
+@keyframes j{50%{transform:translateY(-16px)}}
+@keyframes s{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style>
+</head>
+<body>
+<div class="game">
+<div id="progress">0 / 0</div>
+<div id="mute" onclick="toggleMute()">🔊</div>
+<div id="title">
+<h1 class="title">それゆけ<br>ワンワン君</h1>
+<div class="sub">外旭川わんわん保育園</div>
+<div class="btns">
+<button class="start bgn" onclick="startGame('beginner')">🔰 ワンワン保育園の基礎知識（10問）</button>
+<button class="start pro" onclick="startGame('pro')">🔥 保育のプロフェッショナル（30問）</button>
+</div>
+<div class="hs">基礎 最高: <span id="hsB">0</span>% ／ プロ 最高: <span id="hsP">0</span>%</div>
+</div>
+<div class="main">
+<div class="char">
+<img id="char" src="assets/beginner_idle.jpg" alt="先生">
+<div id="voice" class="bubble"></div>
+</div>
+<div class="quiz"><div id="options" class="grid"></div></div>
+</div>
+<div class="side"><span class="label">ポイント</span><div class="gauge"><div id="fill" class="fill"></div></div><span id="pct" class="num">0%</span></div>
+</div>
+<script src="questions.js"></script>
+<script src="questions-pro.js"></script>
+<script src="assets-1.js"></script>
+<script src="assets-2.js"></script>
+<script src="assets-3.js"></script>
+<script src="assets-4.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
