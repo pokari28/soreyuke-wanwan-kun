@@ -1,0 +1,2 @@
+window.IMAGE_DATA=window.IMAGE_DATA||{};
+IMAGE_DATA.milestone30="PLACEHOLDER_USE_FILE";
