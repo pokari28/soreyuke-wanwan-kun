@@ -1,0 +1,1 @@
+window._P=window._P||{};
